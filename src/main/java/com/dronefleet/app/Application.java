@@ -1,0 +1,5 @@
+package com.dronefleet.app;
+import com.dronefleet.repository.*;import com.dronefleet.security.*;import com.dronefleet.ui.*;import com.dronefleet.config.*;import java.util.logging.*;
+public final class Application{public static void main(String[] args){try{configureLogging();var cfg=new AppConfig();var db=new Database(cfg.databaseUrl());db.initialize();var auth=new AuthService(new UserRepository(db));auth.ensureDefaults();Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                try { AppContextHolder.shutdown(); } catch (Exception ignored) {}
+            }, "dronefleet-shutdown")); javax.swing.SwingUtilities.invokeLater(()->new LoginFrame(auth));}catch(Exception e){e.printStackTrace();javax.swing.JOptionPane.showMessageDialog(null,"Startup failed: "+e.getMessage(),"DroneFleet",javax.swing.JOptionPane.ERROR_MESSAGE);System.exit(1);}}private static void configureLogging(){try{java.util.logging.LogManager.getLogManager().readConfiguration(Application.class.getClassLoader().getResourceAsStream("logging.properties"));}catch(Exception ignored){Logger.getLogger(Application.class.getName()).warning("Using default logging configuration");}}}

@@ -1,0 +1,1 @@
+package com.dronefleet.ui;import com.dronefleet.repository.AuditRepository;import java.util.List;public final class AuditRepositoryAdapter{private final AuditRepository x;public AuditRepositoryAdapter(AuditRepository x){this.x=x;}public List<String> recent(int n){return x.recent(n);}}

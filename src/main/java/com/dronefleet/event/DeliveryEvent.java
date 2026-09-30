@@ -1,0 +1,1 @@
+package com.dronefleet.event;import com.dronefleet.domain.DeliveryStatus;import java.time.LocalDateTime;public record DeliveryEvent(int deliveryId,DeliveryStatus status,LocalDateTime at,String message){}

@@ -1,0 +1,19 @@
+@startuml
+skinparam componentStyle rectangle
+[Login UI] --> [AuthService]
+[Dashboard UI] --> [FleetService]
+[Dashboard UI] --> [DeliveryService]
+[Dashboard UI] --> [AnalyticsService]
+[DeliveryService] --> [AssignmentStrategy]
+[DeliveryService] --> [EventBus]
+[FleetService] --> [DroneRepository]
+[DeliveryService] --> [DroneRepository]
+[DeliveryService] --> [DeliveryRepository]
+[AuthService] --> [UserRepository]
+[FleetService] --> [AuditRepository]
+[DeliveryService] --> [AuditRepository]
+[DroneRepository] --> [SQLite]
+[DeliveryRepository] --> [SQLite]
+[UserRepository] --> [SQLite]
+[AuditRepository] --> [SQLite]
+@enduml
